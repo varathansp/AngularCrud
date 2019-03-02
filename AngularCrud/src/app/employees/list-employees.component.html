@@ -1,8 +1,20 @@
-<!-- <div  *ngFor="let employee of employees">
-
-  <app-display-employee [employee]="employee"></app-display-employee>
-</div> -->
-<button (click)="nextEmployee()" class="btn btn-primary">View Next Employee</button>
+<!-- <h1 *ngIf="dataFromChild">
+  {{ dataFromChild?.name + ' ' + dataFromChild?.gender }}
+</h1> -->
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search By Name"
+            [(ngModel)]="searchTerm" />
+</div>
+<div *ngFor="let employee of filteredEmployees">
+ 
+    <app-display-employee [employee]="employee" [searchTerm]="searchTerm" (notify)="handleNotify($event)"
+    (notifyDelete)="onDeleteNotification($event)"></app-display-employee>
+  
+</div>
+<div *ngIf="error">
+  {{error}}
+</div>
+<!-- <button (click)="nextEmployee()" class="btn btn-primary">View Next Employee</button>
 <br/>
 <br/>
-<app-display-employee [employee]="employeeToDisplay"></app-display-employee>
+<app-display-employee [employee]="employeeToDisplay"></app-display-employee> -->
